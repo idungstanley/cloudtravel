@@ -1,9 +1,9 @@
 <template>
   <div class="nav-container">
     <div>
-      <img :src="CloudtravelLogo" alt="ERROR" />
+      <img :src="CloudtravelLogo" id="ctlogo" alt="ERROR" />
     </div>
-    <div>
+    <div class="links">
       <ul>
         <li>English <span class="drop-down"><img src="dropdown.png" alt=""></span></li>
         <li>USD <span class="drop-down"><img src="dropdown.png" alt=""></span></li>
@@ -38,7 +38,7 @@ export default {
   top: 0%;
   bottom: 0%;
   margin-bottom: 0;
-  height: 60.93241500854492px;
+  height: 50px;
   left: 0px;
   top: 0px;
   border-radius: 0px;
@@ -48,9 +48,16 @@ export default {
 
   border: 1px solid #dddddd;
 }
+#ctlogo{
+  width: 140px;
+  height: auto;
+}
 ul {
   list-style-type: none;
   padding: 0;
+}
+.links{
+  margin-right: 20px;
 }
 li {
   display: inline-block;

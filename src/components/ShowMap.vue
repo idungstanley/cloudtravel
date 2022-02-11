@@ -19,6 +19,8 @@ export default {
 div {
   background-image: url('/map.jpeg');
   width: 250px;
+  background-size: contain;
+ 
   height: 130px;
   margin-top: 15px;
   margin-left: 20px;
@@ -33,6 +35,8 @@ button {
   height: 40px;
   width: 170px;
   border-radius: 3px;
+  cursor: pointer;
+  color: white;
   background: #002d63;
   border: 1px solid #002d63;
   box-sizing: border-box;

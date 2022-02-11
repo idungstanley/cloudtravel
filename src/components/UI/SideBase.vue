@@ -11,7 +11,7 @@ export default {}
 div {
   width: 250px;
   height: auto;
-  margin-top: 15px;
+  margin-top: 8px;
   margin-left: 20px;
   padding: 10px;
   background-color: #ffffff !important;

@@ -1,29 +1,39 @@
 <template>
-  <nav-base>
-    <div class="container">
+  <div class="container">
+    <nav-base>
       <form action="">
         <div class="form-container">
           <div class="search">
-            <img :src="SearchIcon" alt="ERROR" />
+            <img :src="SearchIcon" class="icon" alt="An Error Occured" />
             <input
               type="search"
               name=""
-              id=""
+              id="search"
               placeholder="Singapore, singapore"
             />
           </div>
           <div class="search">
-            <img :src="DateIcon" alt="ERROR" />
-            <input type="search" name="" id="" placeholder="" />
+            <img :src="DateIcon" class="icon" alt="ERROR" />
+            <input
+              type="search"
+              name=""
+              id="date"
+              placeholder="Jul 19  –  Jul 20              1 night"
+            />
           </div>
           <div class="search">
-            <input type="search" name="" id="" placeholder="" />
+            <input
+              type="search"
+              name=""
+              id="guest"
+              placeholder="2 adults, 0 children, 1 room"
+            />
           </div>
           <input type="button" value="Search" class="searchBtn" />
         </div>
       </form>
-    </div>
-  </nav-base>
+    </nav-base>
+  </div>
 </template>
 
 <script>
@@ -41,7 +51,35 @@ export default {
 
 <style scoped>
 .container {
-  padding: 0px 110px;
+  width: 100%;
+  margin: 50px 0 0 0;
+}
+.search {
+  position: relative;
+}
+#search {
+  padding-left: 25px;
+  width: 400px;
+}
+::placeholder {
+  padding: 8px;
+}
+#date::placeholder {
+  padding-left: 20px;
+}
+#date {
+  padding-left: 25px;
+}
+#guest::placeholder {
+  padding-left: 5px;
+}
+#guest {
+  padding-left: 10px;
+}
+.icon {
+  position: absolute;
+  left: 5px;
+  top: 12px;
 }
 .form-container {
   display: flex;
