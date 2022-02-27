@@ -1,8 +1,8 @@
 <template>
- <section>
+  <section>
         <div class="page-number-container">
           <div class="flex">
-            <div class="pad-right">
+            <div class="pad-right"> 
               <p><a href="#">Back to top</a></p>
             </div>
             <div class="number-count">
@@ -35,7 +35,6 @@ export default {
 
 <style scoped>
 .page-number-container {
-  
   width: 100%;
   height: 50px;
 }
@@ -43,11 +42,12 @@ export default {
   display: flex;
   justify-content: flex-start;
 }
-.pad-right {
+
+/* .pad-right {
   padding-right: 100px;
   margin-left: 500px;
-  /* margin: 50px; */
-}
+} */
+
 .pad-right,
 p > a {
   color: #002d63;
