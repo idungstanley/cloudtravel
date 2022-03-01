@@ -3,8 +3,11 @@
     <div>
       <img :src="CloudtravelLogo" id="ctlogo" alt="ERROR" />
     </div>
-    <burger-menu @toggle-menu="menuActive = !menuActive" :active="menuActive"></burger-menu>
-    <div class="links">
+    <burger-menu
+      @toggle-menu="menuActive = !menuActive"
+      :active="menuActive"
+    ></burger-menu>
+    <div class="links" v-show="menuActive">
       <ul>
         <li
           >English
@@ -24,15 +27,15 @@
 import BurgerMenu from '../components/BurgerMenu.vue'
 import CloudtravelLogo from '../assets/CloudtravelLogo.png'
 export default {
-  components:{
-    BurgerMenu
+  components: {
+    BurgerMenu,
   },
   data() {
     return {
       CloudtravelLogo,
+      menuActive: false,
     }
   },
-  
 }
 </script>
 
@@ -48,6 +51,24 @@ export default {
   border-radius: 0px;
   background: #ffffff;
   border: 1px solid #dddddd;
+  .links {
+    display: block;
+    width: 100%;
+    top: 50px;
+    position: absolute;
+    right: 0;
+    z-index: 100;
+    ul> li {
+      display: block;
+      text-align: center;
+      padding: 10px;
+      background-color: #dddddd;
+    }
+      li:hover {
+        background-color: #a5b6be;
+        cursor: pointer;
+      }
+  }
 }
 #burger {
   display: none;
@@ -55,7 +76,8 @@ export default {
 #ctlogo {
   width: 140px;
   height: auto;
-}
+
+} 
 ul {
   list-style-type: none;
   padding: 0;
@@ -73,9 +95,7 @@ li {
     position: relative;
     widows: 100%;
   }
-  ul {
-    visibility: hidden;
-  }
+
   #burger {
     display: block;
     position: absolute;
