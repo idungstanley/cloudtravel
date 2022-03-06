@@ -9,7 +9,7 @@ export default {}
 </script>
 <style scoped>
 div {
-  width: 250px;
+  width:auto;
   height: auto;
   margin-top: 8px;
   margin-left: 20px;

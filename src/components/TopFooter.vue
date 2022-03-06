@@ -16,6 +16,8 @@ export default {}
 </script>
 
 <style scoped>
+@import url('https://fonts.googleapis.com/css2?family=Mulish:wght@500&display=swap');
+
 .nav-container {
   width: 100%;
   height: 4rem;

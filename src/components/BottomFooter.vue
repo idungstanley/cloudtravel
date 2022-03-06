@@ -13,10 +13,9 @@ export default {}
 </script>
 
 <style scoped>
+@import url('https://fonts.googleapis.com/css2?family=Mulish:wght@500&display=swap');
+
 .nav-container {
- /* position: absolute; */
- bottom: 0;
- top: 1340px;
   width: 100%;
   height: 3rem;
   background: #000000;

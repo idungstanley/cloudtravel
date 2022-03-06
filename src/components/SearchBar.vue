@@ -1,5 +1,5 @@
 <template>
-  <nav-base>
+  <nav-base class="stick">
     <form action="">
       <div class="form-container">
         <div class="search">
@@ -9,8 +9,8 @@
             name=""
             v-model="result"
             @click="filterResults"
-            @input="loadSearch"
-            @change="sendResult"
+            @input="loadSearch()"
+            @keyup="sendResult"
             autocomplete="off"
             @focus="modal = true"
             id="search"
@@ -44,7 +44,12 @@
             placeholder="2 adults, 0 children, 1 room"
           />
         </div>
-        <input type="button" value="Search" class="searchBtn hide" />
+        <input
+          type="button"
+          value="Search"
+          class="searchBtn hide"
+          @click.prevent="sumbitBtn"
+        />
       </div>
       <div class="Second-container"> </div>
     </form>
@@ -72,20 +77,21 @@ export default {
       filteredResults: [],
     }
   },
+  mounted() {
+    axios
+      .get('http://localhost:8080/job01/autosuggest')
+      .then((response) => {
+        let data = response.data
+        this.results = data
+      })
+      .catch((error) => {
+        console.log(error)
+      })
+  },
   methods: {
-    loadRequest() {
-      axios
-        .get('http://localhost:8080/job01/autosuggest')
-        .then((response) => {
-          let data = response.data
-          this.results = data
-        })
-        .catch((error) => {
-          console.log(error)
-        })
-    },
     sendResult(event) {
       this.$emit('saveResult', event.target.value)
+      console.log(event.target.value)
     },
     filterResults() {
       this.filteredResults = this.results.filter((result) => {
@@ -99,22 +105,26 @@ export default {
       this.result = result.cityCode
       this.modal = false
     },
-    // loadSearch() {
-    //   axios
-    //     .get('http://localhost:8080/job01/search/sgsg')
-    //     .then((response) => {
-    //       let data = response
-    //       console.log(data)
-    //     })
-    //     .catch((error) => {
-    //       console.log(error)
-    //     })
-    // },
+    sumbitBtn() {
+      console.log('submit form')
+    },
   },
-  mounted() {
-    this.loadRequest()
-    // this.loadSearch()
-  },
+  // setup() {
+  //   function loadSearch(e) {
+  //     let result = e.target.value.trim()
+  //     axios
+  //       .post('/job01/search/', {
+  //         result,
+  //       })
+  //       .then((response) => {
+  //         let data = response
+  //         console.log(data)
+  //       })
+  //       .catch((error) => {
+  //         console.log(error)
+  //       })
+  //   }
+  // },
   watch: {
     result() {
       this.filterResults()
@@ -124,6 +134,8 @@ export default {
 </script>
 
 <style scoped lang="scss">
+@import url('https://fonts.googleapis.com/css2?family=Mulish:wght@500&display=swap');
+
 .container {
   width: 100%;
   margin: 0;
@@ -188,7 +200,7 @@ nav-base {
 .search > input {
   padding: 10px;
   height: 40px;
-  width: 270px;
+  width: 20vw;
   outline: none;
   margin-right: 5px;
   border: 1px solid #dddddd;
@@ -217,10 +229,9 @@ nav-base {
     width: 100%;
     background-color: #fff;
     outline: none;
-    #search{
+    #search {
       width: 100%;
       border: 0;
-      
     }
   }
 }

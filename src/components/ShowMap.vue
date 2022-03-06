@@ -16,24 +16,22 @@ export default {
 </script>
 
 <style scoped>
+@import url('https://fonts.googleapis.com/css2?family=Mulish:wght@500&display=swap');
 div {
   background-image: url('/map.jpeg');
-  width: 250px;
+  width: auto;
   background-size: contain;
- 
   height: 130px;
   margin-top: 15px;
   margin-left: 20px;
   border-radius: 5px;
 }
 button {
-  /* position: absolute;
-  top: 45px;
-  left: 20px; */
   margin-top: 40px;
   margin-left: 10px;
   height: 40px;
-  width: 170px;
+  width: auto;
+  padding: 3px 15px;
   border-radius: 3px;
   cursor: pointer;
   color: white;

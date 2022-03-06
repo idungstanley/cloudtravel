@@ -41,6 +41,8 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="scss">
+@import url('https://fonts.googleapis.com/css2?family=Mulish:wght@500&display=swap');
+
 .nav-container {
   width: 100%;
   padding: 20px 100px;
@@ -52,22 +54,9 @@ export default {
   background: #ffffff;
   border: 1px solid #dddddd;
   .links {
-    display: block;
-    width: 100%;
-    top: 50px;
-    position: absolute;
-    right: 0;
-    z-index: 100;
-    ul> li {
-      display: block;
-      text-align: center;
-      padding: 10px;
-      background-color: #dddddd;
-    }
-      li:hover {
-        background-color: #a5b6be;
-        cursor: pointer;
-      }
+    display: flex;
+   
+    
   }
 }
 #burger {
@@ -104,6 +93,21 @@ li {
   }
   .links {
     display: block;
+     width: 100%;
+    top: 50px;
+    position: absolute;
+    right: 0;
+    z-index: 100;
+    ul> li {
+      display: block;
+      text-align: center;
+      padding: 10px;
+      background-color: #dddddd;
+    }
+      li:hover {
+        background-color: #a5b6be;
+        cursor: pointer;
+      }
   }
 }
 </style>

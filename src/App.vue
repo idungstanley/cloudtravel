@@ -1,11 +1,12 @@
 <template>
   <section id="app">
     <nav-bar></nav-bar>
-    <div>
-      <search-bar class="searchBarFilter hidden" @saveResult='loadResult'></search-bar>
-    </div>
+    <search-bar
+      class="searchBarFilter hidden"
+      @saveResult="loadResult"
+    ></search-bar>
     <home></home>
-    <pagination class="hidden"></pagination>
+    
     <top-footer></top-footer>
     <bottom-footer></bottom-footer>
   </section>
@@ -17,8 +18,7 @@ import SearchBar from './components/SearchBar.vue'
 import Home from './components/Home.vue'
 import BottomFooter from './components/BottomFooter.vue'
 import TopFooter from './components/TopFooter.vue'
-import Pagination from './components/Pagination.vue'
-// import axios from 'axios'
+import axios from 'axios'
 export default {
   name: 'App',
   components: {
@@ -27,36 +27,49 @@ export default {
     Home,
     TopFooter,
     BottomFooter,
-    Pagination,
   },
   data() {
     return {
       outlets: '',
+      results: [],
     }
   },
-  methods:{
-    loadResult(event){
-    alert('this has fired')
-    console.log(event);
-    }
-  }
-  
-
+  mounted() {
+    axios
+      .get('http://localhost:8080/job01/search/sgsg')
+      .then((response) => {
+        let data = response.data.outlets.availability
+        this.results = data.results
+      })
+      .catch((error) => {
+        console.log(error)
+      })
+  },
+  methods: {
+    loadResult(event) {
+      console.log(event)
+    },
+  },
 }
 </script>
 
-<style>
+<style lang="scss">
 * {
   box-sizing: border-box;
   padding: 0;
   margin: 0;
 }
-
 #app {
   text-align: center;
   background: #e5e5e5;
+  .searchBarFilter{
+    position: sticky;
+    top: 0;
+  }
 }
-@media screen and (max-width:960px) {
-
+@media screen and (max-width: 960px) {
+  .hidden {
+    display: none;
+  }
 }
 </style>

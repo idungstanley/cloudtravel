@@ -12,6 +12,8 @@ export default {}
 </script>
 
 <style scoped>
+@import url('https://fonts.googleapis.com/css2?family=Mulish:wght@500&display=swap');
+
 .container {
   display: flex;
   justify-content: flex-start;

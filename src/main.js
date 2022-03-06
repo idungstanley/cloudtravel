@@ -7,8 +7,9 @@ import ShowMap from './components/ShowMap.vue'
 import StarRating from 'vue-star-rating'
 import paginate from 'vue-paginate'
 import paginateLinks from 'vue-paginate'
+import router from './router'
 
-const app = createApp(App)
+const app = createApp(App).use(router)
 
 
 app.component('nav-base', NavBase)

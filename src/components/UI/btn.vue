@@ -9,6 +9,8 @@ export default {}
 </script>
 
 <style scoped>
+@import url('https://fonts.googleapis.com/css2?family=Mulish:wght@500&display=swap');
+
 button {
   border: 1px solid #00a1e6;
   box-sizing: border-box;
