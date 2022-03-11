@@ -1,4 +1,8 @@
 <template>
+  <search-bar
+    @get-search="loadSearch($event)"
+    class="searchBarFilter"
+  ></search-bar>
   <main>
     <filter-page></filter-page>
     <div class="sort-container">
@@ -48,7 +52,7 @@
         <div v-else>
           <div
             class="list-container showDetails"
-            v-for="result in results"
+            v-for="result in computedData"
             :key="result.id"
           >
             <div class="one">
@@ -194,23 +198,33 @@
       </section>
     </div>
   </main>
-  {{results.length}}
-    <pagination :totalRecords="results.length" :perPageOption="10"></pagination>
+  <section>
+    {{ pagination.page }}
+  <Pagination
+    v-if="results"
+    :totalRecords="results.length"
+    :perPageOptions="perPageOptions"
+    v-model="pagination"
+  ></Pagination>
+  </section>
 </template>
 
 <script>
 import starsRating from '../components/rating-stars.vue'
 import OptionBtns from './OptionBtns.vue'
 import axios from 'axios'
-import pagination from '../components/Pagination.vue'
+import Pagination from '../components/Pagination.vue'
 import FilterPage from './FilterPage.vue'
+import SearchBar from './SearchBar.vue'
 
+const perPageOptions = [5, 20, 50, 100]
 export default {
   components: {
     FilterPage,
     OptionBtns,
     starsRating,
-    pagination
+    Pagination,
+    SearchBar,
   },
   data() {
     return {
@@ -225,34 +239,44 @@ export default {
       galleries: [],
       Currency: 'USD',
       componentLoaded: false,
+      perPageOptions,
+      pagination: { page: 1, perPage: perPageOptions[0] },
     }
   },
-
-  mounted() {
-    this.isLoading = true
-    axios
-      .get('http://localhost:8080/job01/search/sgsg')
-      .then((response) => {
-        this.isLoading = false
-        this.error = null
-        this.componentLoaded = true
-        let data = response.data
-        console.log(data)
-        this.Currency = data.meta.currency
-        console.log(this.Currency)
-        this.outlets = data.outlets.availability
-        this.results = this.outlets.results
-        this.results.map((result) => {
-          this.summary = result.packages[0].food
-          // this.adjustedDisplayValue = result.packages[0].adjustedDisplayRate.value
-          console.log(this.summary)
+  computed: {
+    computedData() {
+      if (!this.results) return []
+      else {
+        const firstIndex = (this.pagination.page - 1) * this.pagination.perPage
+        const lastIndex = this.pagination.page * this.pagination.perPage
+        return this.results.slice(firstIndex, lastIndex)
+      }
+    },
+  },
+  methods: {
+    loadSearch(data) {
+      this.isLoading = true
+      axios
+        .get(`http://localhost:8080/job01/search/${data}`)
+        .then((response) => {
+          this.isLoading = false
+          this.error = null
+          this.componentLoaded = true
+          let data = response.data
+          console.log(data)
+          this.Currency = data.meta.currency
+          this.outlets = data.outlets.availability
+          this.results = this.outlets.results
+          this.results.map((result) => {
+            this.summary = result.packages[0].food
+          })
         })
-      })
-      .catch((error) => {
-        this.isLoading = false
-        this.error = 'Opps, something went wrong.'
-        console.log(error)
-      })
+        .catch((error) => {
+          this.isLoading = false
+          this.error = 'Opps, something went wrong.'
+          console.log(error)
+        })
+    },
   },
 }
 </script>
@@ -263,6 +287,10 @@ export default {
 * {
   padding: 0;
   margin: 0;
+}
+.searchBarFilter {
+  position: sticky;
+  top: 0;
 }
 main {
   width: 100%;

@@ -25,24 +25,28 @@
     <show-map class="show-map"></show-map>
     <side-base class="side-base">
       <div class="flex">
-        <h5><strong>Price per night</strong></h5>
+        <h4><strong>Price per night</strong></h4>
         <p><a href="#">Clear</a></p>
       </div>
-      <form action="">
-        <div class="flex">
-          <input type="range" id="vol" name="vol" min="0" max="550" />
+      <div class="fle">
+        <div class="slider">
+          <div class="progress"></div>
         </div>
-        <div class="flex">
-          <button class="sgd">SGD 0</button>
-          <span>-</span>
-          <button class="sgd">SGD 550</button>
-        </div>
-      </form>
+          <div class="range-input">
+            <input type="range" name="" id="" class="range-min" min="0" max="10000" value="0">
+            <input type="range" name="" id="" class="range-min" min="0" max="10000" value="550">
+          </div>
+      </div>
+      <div class="flex">
+        <button class="sgd"><p>SGD 0</p></button>
+        <span>-</span>
+        <button class="sgd"><p>SGD 550</p></button>
+      </div>
     </side-base>
     <side-base class="side-base">
       <div class="flex">
-        <p>Review</p>
-        <p>Clear</p>
+        <h4>Review</h4>
+        <p><a href="#">Clear</a></p>
       </div>
       <form action="">
         <div class="flex">
@@ -52,47 +56,12 @@
           </div>
           <p>999</p>
         </div>
-        <div class="flex">
-          <div>
-            <input type="checkbox" name="Very_Good" id="Very_Good" />
-            <label for="Very_Good">Very Good</label>
-          </div>
-          <p>999</p>
-        </div>
-        <div class="flex">
-          <div>
-            <input type="checkbox" name="Good" id="Good" />
-            <label for="Good">Good</label>
-          </div>
-          <p>999</p>
-        </div>
-        <div class="flex">
-          <div>
-            <input type="checkbox" name="Fair" id="Fair" />
-            <label for="Fair">Fair</label>
-          </div>
-          <p>999</p>
-        </div>
-        <div class="flex">
-          <div>
-            <input type="checkbox" name="Poor" id="Poor" />
-            <label for="Poor">Poor</label>
-          </div>
-          <p>999</p>
-        </div>
-        <div class="flex">
-          <div>
-            <input type="checkbox" name="No_review" id="No_review" />
-            <label for="No_review">No review</label>
-          </div>
-          <p>999</p>
-        </div>
       </form>
     </side-base>
     <side-base class="side-base">
       <div class="flex">
         <h4>Star rating</h4>
-        <p>Clear</p>
+        <p><a href="#">Clear</a></p>
       </div>
       <form action="">
         <div class="flex">
@@ -104,64 +73,21 @@
             <img src="star.png" alt="" />
             <img src="star.png" alt="" />
           </div>
-          <p>999</p>
-        </div>
-        <div class="flex">
-          <div>
-            <input type="checkbox" name="Very_Good" id="Very_Good" />
-            <img src="star.png" alt="" />
-            <img src="star.png" alt="" />
-            <img src="star.png" alt="" />
-            <img src="star.png" alt="" />
-            <img src="star.png" alt="" />
-          </div>
-          <p>999</p>
-        </div>
-        <div class="flex">
-          <div>
-            <input type="checkbox" name="Good" id="Good" />
-            <img src="star.png" alt="" />
-            <img src="star.png" alt="" />
-            <img src="star.png" alt="" />
-            <img src="star.png" alt="" />
-          </div>
-          <p>999</p>
-        </div>
-        <div class="flex">
-          <div>
-            <input type="checkbox" name="Fair" id="Fair" />
-            <img src="star.png" alt="" />
-            <img src="star.png" alt="" />
-            <img src="star.png" alt="" />
-          </div>
-          <p>999</p>
-        </div>
-        <div class="flex">
-          <div>
-            <input type="checkbox" name="Poor" id="Poor" />
-            <img src="star.png" alt="" />
-            <img src="star.png" alt="" />
-          </div>
-          <p>999</p>
-        </div>
-        <div class="flex">
-          <div>
-            <input type="checkbox" name="No_review" id="No_review" />
-            <img src="star.png" alt="" />
-          </div>
-          <p>999</p>
+          <p>{{ result }}</p>
         </div>
       </form>
     </side-base>
     <side-base class="side-base">
-      <h5>Hotel Name</h5>
+      <div class="flex">
+        <h4>Hotel Name</h4>
+      </div>
       <form action="">
         <input type="search" name="" id="" placeholder="e.g Hilton, ibs ..." />
       </form>
     </side-base>
     <side-base class="side-base">
       <div class="flex">
-        <h5>Reservation policy</h5>
+        <h4>Reservation policy</h4>
       </div>
       <form action="">
         <div class="flex">
@@ -193,7 +119,7 @@
     </side-base>
     <side-base class="side-base">
       <div class="flex">
-        <h5>Meal plan</h5>
+        <h4>Meal plan</h4>
       </div>
       <form action="">
         <div class="flex">
@@ -220,7 +146,7 @@
     </side-base>
     <side-base class="side-base">
       <div class="flex">
-        <h5>Property type</h5>
+        <h4>Property type</h4>
       </div>
       <form action="">
         <div class="flex">
@@ -254,7 +180,7 @@
     </side-base>
     <side-base class="side-base">
       <div class="flex">
-        <h5>Facilities</h5>
+        <h4>Facilities</h4>
       </div>
       <form action="">
         <div class="flex">
@@ -280,7 +206,7 @@
         </div>
         <div class="flex">
           <div>
-            <a href="#">Show 26 more</a>
+            <p><a href="#">Show 26 more</a></p>
             <img src="dropdown.png" alt="" />
           </div>
         </div>
@@ -317,27 +243,119 @@ export default {
   padding-bottom: 60px;
   margin-top: 0;
   margin-right: 1%;
-  .sidebase form > input[type='search'] {
+  .side-base form > input[type='search'] {
     width: auto;
+  }
+  .side-base {
+    .fle {
+      .slider {
+        height: 5px;
+        border-radius: 5px;
+        width: 100%;
+        position: relative;
+        background-color: #ddd;
+        .progress{
+          height: 5px;
+          position: absolute;
+          left: 25%;
+          right: 25%;
+          border-radius: 5px;
+          background-color: #00A1E5;
+        }
+        }
+        .range-input{
+          position: relative;
+          input{
+            position: absolute;
+            top:-5px;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: none;
+            pointer-events: none;
+            -webkit-appearance: none;
+          }
+           input[type="range"]::-webkit-slider-thumb{
+              height: 17px;
+              width: 17px;
+              border-radius: 50%;
+              -webkit-appearance: none;
+              background-color: #ffff;
+              border: #00A1E5  2px solid;
+              pointer-events: auto;
+            }
+           input[type="range"]::-moz-range-thumb{
+              height: 17px;
+              width: 17px;
+              border-radius: 50%;
+              -moz-appearance: none;
+              background-color: #ffff;
+              border: none;
+              pointer-events: auto;
+            }
+      }
+    }
   }
   .flex {
     display: flex;
     justify-content: space-between;
+    margin-bottom: 5px;
+
+    div {
+      input {
+        border: 1px solid #757575;
+        box-sizing: border-box;
+        border-radius: 1px;
+        margin-right: 2px;
+        width: 14px;
+        height: auto;
+      }
+    }
     span {
       width: 50%;
+    }
+    h4 {
+      font-family: Mulish;
+      font-size: 14px;
+      font-style: normal;
+      font-weight: 700;
+      line-height: 16px;
+      letter-spacing: 0px;
+      text-align: left;
+    }
+    p {
+      a {
+        font-family: Mulish;
+        font-size: 12px;
+        font-style: normal;
+        font-weight: 700;
+        line-height: 20px;
+        letter-spacing: 0px;
+        text-align: right;
+        text-decoration: none;
+      }
+    }
+    .sgd {
+      background: #ffffff;
+      border: 1px solid #dddddd;
+      box-sizing: border-box;
+      width: fit-content;
+      height: auto;
+      padding: 4px;
+      border-radius: 3px;
+      p {
+        font-family: Mulish;
+        font-size: 12px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: 16px;
+        letter-spacing: 0px;
+        text-align: left;
+      }
     }
   }
   .small-screen {
     display: none;
-  }
-  .sgd {
-    background: #ffffff;
-    border: 1px solid #dddddd;
-    box-sizing: border-box;
-    width: fit-content;
-    height: auto;
-    padding: 3px 20px 3px 5px;
-    border-radius: 3px;
   }
   label {
     font-size: small;
@@ -372,13 +390,13 @@ export default {
       height: 60px;
       position: fixed;
       bottom: 0;
-      .flex{
-       display: flex;
-      justify-content: space-between;
+      .flex {
+        display: flex;
+        justify-content: space-between;
       }
       .left-btn {
-        height:40px;
-        color: #002D63;
+        height: 40px;
+        color: #002d63;
         width: auto;
         border-radius: 5px;
         background: #ffffff;

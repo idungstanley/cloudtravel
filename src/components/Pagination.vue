@@ -15,14 +15,8 @@
           @click="changePage(-1)"
         />
         <span class="inner-pagination-content">
-          <p @click="changePage()" class="active">1</p>
-          <p @click="changePage()">2</p>
-          <p @click="changePage()">3</p>
-          <p @click="changePage()">4</p>
-          <p @click="changePage()">5</p>
-          <p @click="changePage()">6</p>
-          <p @click="changePage()">...</p>
-          <p @click="changePage()">13</p>
+          <p @click="changePage()" class="active">{{page}}</p>
+         
         </span>
         <img
           src="arrow-right.svg"
@@ -32,18 +26,6 @@
         />
       </p>
     </div>
-    <!-- <div class="page-number-container">
-          <div class="flex">
-            <div class="pad-right"> 
-            </div>
-            <div class="number-count">
-            </div>
-            <div class="flex">
-              <div class="flex num">
-              </div>
-            </div>
-          </div>
-        </div> -->
   </section>
 </template>
 
@@ -51,19 +33,18 @@
 import axios from 'axios'
 // import { computed } from '@vue/runtime-core'
 export default {
-  props: ['totalRecords','perPageOptions'],
+  props: ['totalRecords', 'perPageOptions'],
   data() {
     return {
-      page: '',
+      page: 1,
       showPage: '',
-      perPage: this.perPageOption,
-      pagination: [],
+      perPage: this.perPageOptions[0],
+      // pagination: [],
     }
   },
   computed: {
     pages() {
       const remainder = this.totalRecords % this.perPage
-      console.log(this.perPage)
       if (remainder > 0) {
         return Math.floor(this.totalRecords / this.perPage) + 1
       } else {
@@ -79,9 +60,7 @@ export default {
         this.pagination = data.pagination
         this.page = this.pagination.page
         this.showPage = this.pagination.showing[1]
-        // this.totalRecords = data.results.length
         this.totalItems = this.pagination.totalItems
-        console.log(this.showPage)
       })
       .catch((error) => {
         console.log(error)
@@ -96,10 +75,8 @@ export default {
         case 1:
           this.page = this.page < this.pages ? this.page + 1 : this.page
           break
-
-        default:
-          break
       }
+      this.$emit( 'input', { page: this.page, perPage: this.perPage })
     },
   },
 }
@@ -109,29 +86,25 @@ export default {
 @import url('https://fonts.googleapis.com/css2?family=Mulish:wght@500&display=swap');
 
 .container {
-  // width: 100%;
   display: flex;
-  justify-content: space-around;
+  width: 100%;
+  justify-content:right;
   height: 50px;
-  .pagination-container {
-    display: flex;
-    .inner-pagination-content {
-      display: flex;
-    }
-  }
   .flex {
-    margin-left: 0 15px;
     display: flex;
-    justify-content: space-around;
+    justify-content:space-between;
+    // margin-left: 15px;
     p > a {
-      //styleName: p;
+      text-decoration: none;
       font-family: Mulish;
       font-size: 15px;
       font-style: normal;
       font-weight: 400;
+      color: #002d63;
       line-height: 20px;
       letter-spacing: 0px;
       text-align: left;
+      margin-right: 100px;
     }
     span > p {
       font-family: Mulish;
@@ -140,38 +113,49 @@ export default {
       font-weight: 400;
       line-height: 20px;
       letter-spacing: 0px;
-      text-align: center;
+      text-align: right;
+    }
+  }
+  .active {
+    background: #002d63;
+    border-radius: 5px;
+    color: white;
+    width: fit-content;
+    height: fit-content;
+    padding: 1px 5px;
+  }
+  .pagination-container {
+    display: flex;
+    img {
+      height: 10px;
+      width: 6.25px;
+      margin-left: 25px;
+      margin-top: 5px;
+      left: 0px;
+      top: 10px;
+      border-radius: 0px;
+      cursor: pointer;
+    }
+    .inner-pagination-content {
+      display: flex;
+      p {
+        display: flex;
+        justify-content: space-around;
+        margin: 0 15px;
+        font-family: Mulish;
+        font-size: 14px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: 20px;
+        letter-spacing: 0px;
+        text-align: center;
+        cursor: pointer;
+      }
     }
   }
 }
 
-.pad-right,
-p > a {
-  color: #002d63;
-  text-decoration: none;
-}
-.number-count {
-  margin-right: 5px;
-  font-size: 14px;
-  line-height: 20px;
-  color: #333333;
-}
-.active {
-  background: #002d63;
-  border-radius: 5px;
-  color: white;
-  width: fit-content;
-  height: auto;
-  padding: 1px 5px;
-}
-.flex .num > p {
-  margin-right: 10px;
-  margin-left: 10px;
-  cursor: pointer;
-}
-.pointer {
-  cursor: pointer;
-}
+
 @media screen and (max-width: 960px) {
   .container {
     display: block;
@@ -192,7 +176,7 @@ p > a {
         border-radius: 0px;
       }
       .inner-pagination-content {
-        p{
+        p {
           display: flex;
           justify-content: space-around;
           margin: 0 15px;

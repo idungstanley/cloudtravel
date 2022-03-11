@@ -43,7 +43,8 @@
         </defs>
       </svg>
     </div>
-    <div v-if="isIndicatorActive" class="indicator">{{ config.rating }}</div>
+    <div v-if="isIndicatorActive" class="indicator"></div>
+    <!-- {{ config.rating }} -->
   </div>
 </template>
 

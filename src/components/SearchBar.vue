@@ -5,12 +5,11 @@
         <div class="search">
           <img :src="SearchIcon" class="icon" alt="An Error Occured" />
           <input
-            type="search"
+            type="text"
             name=""
             v-model="result"
             @click="filterResults"
-            @input="loadSearch()"
-            @keyup="sendResult"
+            @input="sendResult"
             autocomplete="off"
             @focus="modal = true"
             id="search"
@@ -48,7 +47,7 @@
           type="button"
           value="Search"
           class="searchBtn hide"
-          @click.prevent="sumbitBtn"
+          @click.prevent="passEmit"
         />
       </div>
       <div class="Second-container"> </div>
@@ -90,11 +89,19 @@ export default {
   },
   methods: {
     sendResult(event) {
-      this.$emit('saveResult', event.target.value)
-      console.log(event.target.value)
+      this.$emit('savResult', {result:event.target.value})
     },
     filterResults() {
+      if (this.result.length == 0) {
+        this.filteredResults = this.result
+      }
       this.filteredResults = this.results.filter((result) => {
+        console.log(
+          result
+            .toString()
+            .toLowerCase()
+            .startsWith(this.result.toString().toLowerCase())
+        )
         return result
           .toString()
           .toLowerCase()
@@ -105,26 +112,13 @@ export default {
       this.result = result.cityCode
       this.modal = false
     },
-    sumbitBtn() {
-      console.log('submit form')
-    },
+    passEmit(){
+      this.$emit('get-search', this.result
+      )
+      console.log(this.result)
+      }
   },
-  // setup() {
-  //   function loadSearch(e) {
-  //     let result = e.target.value.trim()
-  //     axios
-  //       .post('/job01/search/', {
-  //         result,
-  //       })
-  //       .then((response) => {
-  //         let data = response
-  //         console.log(data)
-  //       })
-  //       .catch((error) => {
-  //         console.log(error)
-  //       })
-  //   }
-  // },
+
   watch: {
     result() {
       this.filterResults()
@@ -148,29 +142,45 @@ export default {
   padding-left: 25px;
   width: 400px;
 }
-.autocomplete-results {
-  z-index: 1000;
+.autocomplete {
   position: absolute;
+  background: #ffffff;
+  border: 1px solid #dddddd;
+  box-sizing: border-box;
+  border-radius: 3px;
+  z-index: 1000;
   padding: 0;
-  margin: 0;
-  border: 1px solid rgb(186, 206, 228);
-  /* overflow: auto; */
-  background-color: white;
+  margin-top: 3px;
+  overflow: auto;
 }
 .autocomplete-result {
   border-radius: 3px;
   width: 400px;
+  padding: 0;
   height: auto;
   list-style: none;
   text-align: left;
-  padding: 4px 5px;
   cursor: pointer;
   background-color: white;
+  li {
+    padding: 5px;
+    font-family: Mulish;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 20px;
+    img {
+      margin-right: 4px;
+      height: 12px;
+      width: 12px;
+    }
+  }
+  :hover {
+    background-color: #dddddd;
+    color: white;
+  }
 }
-.autocomplete-result > li:hover {
-  background-color: #a5b6be;
-  color: white;
-}
+
 ::placeholder {
   padding: 8px;
 }

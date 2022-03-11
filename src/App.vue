@@ -1,20 +1,17 @@
 <template>
-  <section id="app">
-    <nav-bar></nav-bar>
-    <search-bar
-      class="searchBarFilter hidden"
-      @saveResult="loadResult"
-    ></search-bar>
-    <home></home>
-    
-    <top-footer></top-footer>
-    <bottom-footer></bottom-footer>
+  <section id="app" >
+    <div @click="modal = false" inherit="true">
+      <nav-bar></nav-bar>
+      <home></home>
+      <top-footer></top-footer>
+      <bottom-footer></bottom-footer>
+    </div>
   </section>
 </template>
 
 <script>
 import NavBar from './components/NavBar.vue'
-import SearchBar from './components/SearchBar.vue'
+// import SearchBar from './components/SearchBar.vue'
 import Home from './components/Home.vue'
 import BottomFooter from './components/BottomFooter.vue'
 import TopFooter from './components/TopFooter.vue'
@@ -23,7 +20,6 @@ export default {
   name: 'App',
   components: {
     NavBar,
-    SearchBar,
     Home,
     TopFooter,
     BottomFooter,
@@ -32,6 +28,7 @@ export default {
     return {
       outlets: '',
       results: [],
+      modal:false
     }
   },
   mounted() {
@@ -62,10 +59,7 @@ export default {
 #app {
   text-align: center;
   background: #e5e5e5;
-  .searchBarFilter{
-    position: sticky;
-    top: 0;
-  }
+  
 }
 @media screen and (max-width: 960px) {
   .hidden {
