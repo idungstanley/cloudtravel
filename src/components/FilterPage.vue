@@ -30,12 +30,27 @@
       </div>
       <div class="fle">
         <div class="slider">
-          <div class="progress"></div>
+          <div class="progress" ref="progress"></div>
         </div>
-          <div class="range-input">
-            <input type="range" name="" id="" class="range-min" min="0" max="10000" value="0">
-            <input type="range" name="" id="" class="range-min" min="0" max="10000" value="550">
-          </div>
+        <div class="range-input">
+          <input
+            type="range"
+            name=""
+            id=""
+            class="range-min"
+            min="0"
+            max="10000"
+          />
+          <input
+            type="range"
+            name=""
+            id=""
+            class="range-min"
+            min="0"
+            max="10000"
+            value="550"
+          />
+        </div>
       </div>
       <div class="flex">
         <button class="sgd"><p>SGD 0</p></button>
@@ -227,10 +242,22 @@
 
 <script>
 import SideBase from './UI/SideBase.vue'
+
 export default {
   components: {
     SideBase,
   },
+  data() {
+    return {
+      value: [20, 50],
+    }
+  },
+  // computed: {
+  //   minLeft() {
+  //     let minValue = parseInt(this.value[0])
+  //     return this.$refs.progress= (minValue / this.$refs.Input) * 100 
+  //   },
+  // },
 }
 </script>
 
@@ -254,45 +281,45 @@ export default {
         width: 100%;
         position: relative;
         background-color: #ddd;
-        .progress{
+        .progress {
           height: 5px;
           position: absolute;
           left: 25%;
           right: 25%;
           border-radius: 5px;
-          background-color: #00A1E5;
+          background-color: #00a1e5;
         }
+      }
+      .range-input {
+        position: relative;
+        input {
+          position: absolute;
+          top: -5px;
+          left: 0;
+          width: 100%;
+          height: 5px;
+          background: none;
+          pointer-events: none;
+          -webkit-appearance: none;
         }
-        .range-input{
-          position: relative;
-          input{
-            position: absolute;
-            top:-5px;
-            left: 0;
-            width: 100%;
-            height: 5px;
-            background: none;
-            pointer-events: none;
-            -webkit-appearance: none;
-          }
-           input[type="range"]::-webkit-slider-thumb{
-              height: 17px;
-              width: 17px;
-              border-radius: 50%;
-              -webkit-appearance: none;
-              background-color: #ffff;
-              border: #00A1E5  2px solid;
-              pointer-events: auto;
-            }
-           input[type="range"]::-moz-range-thumb{
-              height: 17px;
-              width: 17px;
-              border-radius: 50%;
-              -moz-appearance: none;
-              background-color: #ffff;
-              border: none;
-              pointer-events: auto;
-            }
+        input[type='range']::-webkit-slider-thumb {
+          height: 17px;
+          width: 17px;
+          border-radius: 50%;
+          -webkit-appearance: none;
+          background-color: #ffff;
+          border: #00a1e5 2px solid;
+          pointer-events: auto;
+        }
+        input[type='range']::-moz-range-thumb {
+          height: 17px;
+          width: 17px;
+          border-radius: 50%;
+          -moz-appearance: none;
+          background-color: #ffff;
+          border: none;
+          pointer-events: auto;
+        }
       }
     }
   }

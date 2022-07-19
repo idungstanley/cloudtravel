@@ -8,7 +8,6 @@ import StarRating from 'vue-star-rating'
 import paginate from 'vue-paginate'
 import paginateLinks from 'vue-paginate'
 import router from './router'
-
 const app = createApp(App).use(router)
 
 
@@ -19,6 +18,7 @@ app.component('btn', btn)
 app.component('star-rating', StarRating)
 app.component('paginate', paginate)
 app.component('paginate-links', paginateLinks)
+
 
 
 app.mount('#app')

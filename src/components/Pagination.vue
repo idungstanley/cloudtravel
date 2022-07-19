@@ -15,7 +15,7 @@
           @click="changePage(-1)"
         />
         <span class="inner-pagination-content">
-          <p @click="changePage()" class="active">{{page}}</p>
+          <p @click="changePage()" :class={active:selected}>{{page}}</p>
          
         </span>
         <img
@@ -38,6 +38,7 @@ export default {
     return {
       page: 1,
       showPage: '',
+      selected: false,
       perPage: this.perPageOptions[0],
       // pagination: [],
     }
@@ -68,6 +69,7 @@ export default {
   },
   methods: {
     changePage(val) {
+      this.selected = true
       switch (val) {
         case -1:
           this.page = this.page > 1 ? this.page - 1 : this.page

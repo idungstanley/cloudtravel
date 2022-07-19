@@ -25,7 +25,11 @@
           </div>
         </div>
         <div id="para">
-          <h3><strong>Singapore: 9999 properties found</strong></h3>
+          <h3
+            ><strong
+              >Singapore: {{ results.length }} properties found</strong
+            ></h3
+          >
         </div>
         <option-btns class="optionsFilter"></option-btns>
       </section>
@@ -53,7 +57,7 @@
           <div
             class="list-container showDetails"
             v-for="result in computedData"
-            :key="result.id"
+            :key="result"
           >
             <div class="one">
               <img
@@ -112,10 +116,7 @@
                 {{ result.property.location.countryCode
                 }}<span><a href="">(View in Map)</a></span></p
               >
-              <p class="ellipsis"
-                >Very good wellness hotel. Located near shopping areas with easy
-                access to parking.</p
-              >
+              <p class="ellipsis">stan</p>
               <div class="flex showBtn">
                 <btn>Breakfast</btn>
                 <btn>Free cancellation</btn>
@@ -199,13 +200,13 @@
     </div>
   </main>
   <section>
-    {{ pagination.page }}
-  <Pagination
-    v-if="results"
-    :totalRecords="results.length"
-    :perPageOptions="perPageOptions"
-    v-model="pagination"
-  ></Pagination>
+    <!-- {{results[7].property.reviews.summary}} -->
+    <Pagination
+      v-if="results"
+      :totalRecords="results.length"
+      :perPageOptions="perPageOptions"
+      v-model="pagination"
+    ></Pagination>
   </section>
 </template>
 
@@ -217,7 +218,7 @@ import Pagination from '../components/Pagination.vue'
 import FilterPage from './FilterPage.vue'
 import SearchBar from './SearchBar.vue'
 
-const perPageOptions = [5, 20, 50, 100]
+const perPageOptions = [20, 50, 100]
 export default {
   components: {
     FilterPage,
@@ -252,6 +253,13 @@ export default {
         return this.results.slice(firstIndex, lastIndex)
       }
     },
+    getText() {
+      var results = this.results
+      // let text = []
+      return results.map((result) => {
+        return result.property.reviews.summary
+      })
+    },
   },
   methods: {
     loadSearch(data) {
@@ -278,6 +286,28 @@ export default {
         })
     },
   },
+  mounted() {
+    axios
+      .get('http://localhost:8080/job01/search/sgsg')
+      .then((response) => {
+        this.isLoading = false
+        this.error = null
+        this.componentLoaded = true
+        let data = response.data
+        console.log(data)
+        this.Currency = data.meta.currency
+        this.outlets = data.outlets.availability
+        this.results = this.outlets.results
+        this.results.map((result) => {
+          this.summary = result.packages[0].food
+        })
+      })
+      .catch((error) => {
+        this.isLoading = false
+        this.error = 'Opps, something went wrong.'
+        console.log(error)
+      })
+  },
 }
 </script>
 
@@ -287,6 +317,7 @@ export default {
 * {
   padding: 0;
   margin: 0;
+  z-index: 3;
 }
 .searchBarFilter {
   position: sticky;

@@ -7,17 +7,17 @@
       @toggle-menu="menuActive = !menuActive"
       :active="menuActive"
     ></burger-menu>
-    <div class="links" v-show="menuActive">
+    <div class="links">
       <ul>
-        <li
-          >English
-          <span class="drop-down"><img src="dropdown.png" alt="" /></span
+        <li>
+          <a class="drop-down" href=""
+            >English<img src="dropdown.png" alt="" /></a
         ></li>
         <li
-          >USD <span class="drop-down"><img src="dropdown.png" alt="" /></span
+          ><a class="drop-down" href="">USD<img src="dropdown.png" alt="" /></a
         ></li>
-        <li>My Account</li>
-        <li>Log out</li>
+        <li><a href="">My Account</a></li>
+        <li><a href="">Log out</a></li>
       </ul>
     </div>
   </div>
@@ -55,8 +55,32 @@ export default {
   border: 1px solid #dddddd;
   .links {
     display: flex;
-   
-    
+    margin-right: 20px;
+
+    ul {
+      display: flex;
+      list-style: none;
+      padding: 0;
+      li {
+        margin: 0 10px;
+        display: flex;
+        a {
+          // flex: 1 1 50%;
+          font-family: Mulish;
+          font-size: 16px;
+          font-style: normal;
+          font-weight: 400;
+          line-height: 20px;
+          letter-spacing: 0.01em;
+          text-align: right;
+          color: #000000;
+          text-decoration: none;
+          img{
+            padding:2px 5px;
+          }
+        }
+      }
+    }
   }
 }
 #burger {
@@ -65,18 +89,6 @@ export default {
 #ctlogo {
   width: 140px;
   height: auto;
-
-} 
-ul {
-  list-style-type: none;
-  padding: 0;
-}
-.links {
-  margin-right: 20px;
-}
-li {
-  display: inline-block;
-  margin: 0 10px;
 }
 
 @media screen and (max-width: 960px) {
@@ -93,21 +105,27 @@ li {
   }
   .links {
     display: block;
-     width: 100%;
+    width: 100%;
     top: 50px;
     position: absolute;
     right: 0;
     z-index: 100;
-    ul> li {
-      display: block;
-      text-align: center;
+    ul {
+      width: 100%;
+      li > a {
+        text-decoration: none;
+      }
+    }
+    ul > li {
+      display: flex;
+      justify-content: center;
       padding: 10px;
       background-color: #dddddd;
     }
-      li:hover {
-        background-color: #a5b6be;
-        cursor: pointer;
-      }
+    li:hover {
+      background-color: #a5b6be;
+      cursor: pointer;
+    }
   }
 }
 </style>

@@ -1,16 +1,16 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import FilterPage from '../components/FilterPage.vue'
+import filterpage from '../components/FilterPage.vue'
 import SearchBar from '../components/SearchBar.vue'
 
 const routes = [
   {
-    path: '/FilterPage',
-    name: 'FilterPage',
-    component: FilterPage,
+    path: '/filterpage',
+    name: 'filterpage',
+    component: filterpage,
   },
   {
     path: '/searchBar',
-    name: 'searchBar',
+    name: 'searchbar',
     component: SearchBar,
   },
   // {

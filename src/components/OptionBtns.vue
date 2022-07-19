@@ -20,7 +20,7 @@ export default {}
   align-items: center;
   margin-left: 40px;
   margin-bottom: 0;
-  width: 60vw;
+  width: 100%;
 }
 .blue {
   background: #002d63;
@@ -31,7 +31,7 @@ button {
   border: none;
   margin-left: 1.5px;
   height: 35px;
-  width: 200px;
+  width:100%;
   background: #ffffff;
   cursor: pointer;
   border-radius: 3px;

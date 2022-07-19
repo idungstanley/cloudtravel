@@ -89,7 +89,7 @@ export default {
   },
   methods: {
     sendResult(event) {
-      this.$emit('savResult', {result:event.target.value})
+      this.$emit('savResult', { result: event.target.value })
     },
     filterResults() {
       if (this.result.length == 0) {
@@ -112,11 +112,9 @@ export default {
       this.result = result.cityCode
       this.modal = false
     },
-    passEmit(){
-      this.$emit('get-search', this.result
-      )
-      console.log(this.result)
-      }
+    passEmit() {
+      this.$emit('get-search', this.result)
+    },
   },
 
   watch: {
@@ -133,6 +131,11 @@ export default {
 .container {
   width: 100%;
   margin: 0;
+}
+.stick {
+  position: sticky;
+  top: 0;
+  z-index: 10000;
 }
 
 .search {
